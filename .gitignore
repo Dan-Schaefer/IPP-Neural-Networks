@@ -23,4 +23,5 @@ $RECYCLE.BIN/
 *.lnk
 
 
-# End of https://www.gitignore.io/api/windows
+# ignore a single file (GitHub has a size limit of 100 MB/repository)
+unstable_training_gen2_7D_nions0_flat_filter7.h5
