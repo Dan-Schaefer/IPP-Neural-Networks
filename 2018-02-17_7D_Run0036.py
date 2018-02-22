@@ -8,7 +8,7 @@ from __future__ import print_function
 
 import keras
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, BatchNormalization
+from keras.layers import Dense, Dropout, BatchNormalization, Activation, ActivityRegularization
 from keras.optimizers import RMSprop, adam, Adam
 from keras.initializers import TruncatedNormal
 from keras import regularizers
@@ -87,22 +87,35 @@ store.close()
 
 # Define neural network
 model = Sequential()
+# Input Layer
 model.add(Dense(30,
-        activation='tanh',
-        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None),
-        kernel_regularizer=regularizers.l2(0.00000001),
-        input_shape=(7,)))
+        input_shape=(7,),
+        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None)))
+model.add(BatchNormalization())
+model.add(Activation('tanh'))
+model.add(ActivityRegularization(l2=0.00000001))
+
+# First Hidden Layer
 model.add(Dense(30,
-        activation='tanh',
-        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None),
-        kernel_regularizer=regularizers.l2(0.00000001)))
+        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None)))
+model.add(BatchNormalization())
+model.add(Activation('tanh'))
+model.add(ActivityRegularization(l2=0.00000001))
+
+# Second Hidden Layer
 model.add(Dense(30,
-        activation='tanh',
-        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None),
-        kernel_regularizer=regularizers.l2(0.00000001)))
+        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None)))
+model.add(BatchNormalization())
+model.add(Activation('tanh'))
+model.add(ActivityRegularization(l2=0.00000001))
+
+# Output layer
 model.add(Dense(1,
-        activation='linear'))
-#model.add(keras.layers.normalization.BatchNormalization())
+        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None)))
+model.add(BatchNormalization())
+model.add(Activation('linear'))
+model.add(ActivityRegularization(l2=0.00000001))
+
 model.summary()
 
 # Add CallBacks (including TensorBoard)
@@ -110,15 +123,7 @@ tbCallBack = keras.callbacks.TensorBoard(
         log_dir='TensorBoard_logs/' + str(file_name), write_graph=True)
 EarlyStoppingCallBack = keras.callbacks.EarlyStopping(
         monitor='val_rmse', min_delta=0, patience=10, verbose=0, mode='auto')
-'''
-print("Checkpoint 1")
-preds = model.predict(x_test)
 
-print("Checkpoint 2")
-print(rmse(preds[0],y_test))
-print("Checkpoint 3")
-print(len(y_test))
-'''
 model.compile(loss='mean_squared_error',   #categorical_crossentropy
               #optimizer='adam',
               optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999),

@@ -92,17 +92,19 @@ model.add(Dense(30,
         kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None),
         kernel_regularizer=regularizers.l2(0.00000001),
         input_shape=(7,)))
+model.add(BatchNormalization())
 model.add(Dense(30,
         activation='tanh',
         kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None),
         kernel_regularizer=regularizers.l2(0.00000001)))
+model.add(BatchNormalization())
 model.add(Dense(30,
         activation='tanh',
         kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.05, seed=None),
         kernel_regularizer=regularizers.l2(0.00000001)))
+model.add(BatchNormalization())
 model.add(Dense(1,
         activation='linear'))
-#model.add(keras.layers.normalization.BatchNormalization())
 model.summary()
 
 # Add CallBacks (including TensorBoard)
