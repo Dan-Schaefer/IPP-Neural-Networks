@@ -25,3 +25,6 @@ $RECYCLE.BIN/
 
 # ignore a single file (GitHub has a size limit of 100 MB/repository)
 unstable_training_gen2_7D_nions0_flat_filter7.h5
+/Plotting/out.csv
+/Plotting/out_joined_dataFrame.csv
+/Plotting/out_smag.csv
