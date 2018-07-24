@@ -27,11 +27,12 @@ $RECYCLE.BIN/
 unstable_training_gen2_7D_nions0_flat_filter7.h5
 unstable_training_gen3_7D_nions0_flat_filter8.h5
 gen3_7D_nions0_flat_filter8.h5
-/Plotting/out.csv
+/Plotting/out_local.csv
 /Plotting/out_joined_dataFrame.csv
 /Plotting/out_smag.csv
 /TensorBoard_logs/2018-07-18_7D_Run0051a/
 /TensorBoard_logs/2018-07-19_Run0052/
 /TensorBoard_logs/2018-07-19_Run0053/
 /TensorBoard_logs/2018-07-19_Run0054/
+/TensorBoard_logs/2018-07-23_Run0055/
 /TensorBoard_logs/Multiple_Runs_Testing_Environment/
