@@ -28,7 +28,7 @@ def rmse(y_true, y_pred):
 file_name =  os.path.basename(sys.argv[0][:-3])
 
 # Define neural network parameters
-batch_size = 10
+batch_size = 256
 #num_classes = 1
 epochs = 100
 
@@ -96,14 +96,14 @@ model = Sequential()
 model.add(Dense(30,
         input_shape=(7,),
         activation='tanh',
-        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
+        kernel_initializer='glorot_normal',
         kernel_regularizer=regularizers.l2(0.00005),
-        use_bias=True, bias_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None)))
+        use_bias=True, bias_initializer='glorot_normal'))
 model.add(Dense(30,
         activation='tanh',
-        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
+        kernel_initializer='glorot_normal',
         kernel_regularizer=regularizers.l2(0.00005),
-        use_bias=True, bias_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None)))
+        use_bias=True, bias_initializer='glorot_normal'))
 model.add(Dense(1,
         activation='linear'))
 model.summary()

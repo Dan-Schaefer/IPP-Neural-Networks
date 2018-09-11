@@ -85,9 +85,13 @@ store.close()
 
 '''
 # Layers (FYI)
+30 x 4
+
 Input_Layer = 7
 Hidden_Layer_1 = 30
 Hidden_Layer_2 = 30
+Hidden_Layer_3 = 30
+Hidden_Layer_4 = 30
 Output_Layer = 1
 '''
 
@@ -96,14 +100,24 @@ model = Sequential()
 model.add(Dense(30,
         input_shape=(7,),
         activation='tanh',
-        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
+        kernel_initializer='glorot_normal',
         kernel_regularizer=regularizers.l2(0.00005),
-        use_bias=True, bias_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None)))
+        use_bias=True, bias_initializer='glorot_normal'))
 model.add(Dense(30,
         activation='tanh',
-        kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
+        kernel_initializer='glorot_normal',
         kernel_regularizer=regularizers.l2(0.00005),
-        use_bias=True, bias_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None)))
+        use_bias=True, bias_initializer='glorot_normal'))
+model.add(Dense(30,
+        activation='tanh',
+        kernel_initializer='glorot_normal',
+        kernel_regularizer=regularizers.l2(0.00005),
+        use_bias=True, bias_initializer='glorot_normal'))
+model.add(Dense(30,
+        activation='tanh',
+        kernel_initializer='glorot_normal',
+        kernel_regularizer=regularizers.l2(0.00005),
+        use_bias=True, bias_initializer='glorot_normal'))
 model.add(Dense(1,
         activation='linear'))
 model.summary()

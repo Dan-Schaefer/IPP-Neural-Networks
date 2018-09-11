@@ -8,7 +8,7 @@ from __future__ import print_function
 
 import keras
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, BatchNormalization
+from keras.layers import Dense, Dropout, BatchNormalization, Merge
 from keras.optimizers import RMSprop, adam, Adam
 from keras.initializers import TruncatedNormal, glorot_normal
 from keras import regularizers
@@ -218,8 +218,11 @@ branch2.add(Dense(1,
 
 model = Sequential()
 model.add(Merge([branch1, branch2], mode = 'concat'))
+
+# merged = concatenate([branch1, branch2])
+
 model.add(Dense(1,
-        activation= activation='tanh', #       'LateFusionActivation',
+        activation='tanh', #       'LateFusionActivation',
         kernel_initializer='glorot_normal',
         kernel_regularizer=regularizers.l2(0.00005),
         use_bias=True, bias_initializer='glorot_normal'))

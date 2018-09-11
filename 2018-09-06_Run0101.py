@@ -1,27 +1,29 @@
-#! /usr/bin/env python
-
 '''
-Trains 7D QuaLiKiz-NN with a single output (efiTG)
+Late Fusion Module (test) - Functional API
 '''
 
-from __future__ import print_function
-
+# Multiple Inputs
 import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, BatchNormalization
 from keras.optimizers import RMSprop, adam, Adam
 from keras.initializers import TruncatedNormal, glorot_normal
+from keras.utils import plot_model
+from keras.models import Model
+from keras.layers import Input
+from keras.layers import Dense
+from keras.layers.merge import concatenate
 from keras import regularizers
 from keras import backend as K
 import pandas
 import numpy
 import sys
 import os
-
 from copy import deepcopy
-from keras.models import load_model
 
 keras.backend.clear_session()
+
+
+
+
 
 # Define new Metric: rmse = Root Mean Square Error
 def rmse(y_true, y_pred):
@@ -108,6 +110,9 @@ joined_dataFrame_1['smag'] = (joined_dataFrame_1['smag'] - joined_dataFrame_1['s
 joined_dataFrame_1['x'] = (joined_dataFrame_1['x'] - joined_dataFrame_1['x'].mean()) / joined_dataFrame_1['x'].std()
 joined_dataFrame_1['Ti_Te'] = (joined_dataFrame_1['Ti_Te'] - joined_dataFrame_1['Ti_Te'].mean()) / joined_dataFrame_1['Ti_Te'].std()
 
+print("joined_dataFrame_1.shape")
+print(joined_dataFrame_1.shape)
+
 # Shuffles dataset
 shuffled_joined_dataFrame_1 = joined_dataFrame_1.reindex(numpy.random.permutation(
                                                 joined_dataFrame_1.index))
@@ -115,8 +120,14 @@ shuffled_joined_dataFrame_1 = joined_dataFrame_1.reindex(numpy.random.permutatio
 # Creates a pandas dataframe for the outputs
 shuffled_clean_output_df_1 = shuffled_joined_dataFrame_1['efeETG_GB']
 
+print("shuffled_clean_output_df_1.shape")
+print(shuffled_clean_output_df_1.shape)
+
 # Creates a pandas dataframe for the inputs
 shuffled_clean_input_df_1 = shuffled_joined_dataFrame_1.drop('efeETG_GB', axis=1)
+
+print("shuffled_clean_input_df_1.shape")
+print(shuffled_clean_input_df_1.shape)
 
 # Creates training dataset (90% of total data) for outputs
 y_train_1 = shuffled_clean_output_df_1.iloc[:int(
@@ -173,59 +184,37 @@ del target_df, input_df
 # Closes the HDFStore. This is good practice.
 store.close()
 
-'''
-# Layers (FYI)
-# BRANCH 1
-Input_Layer = 6
-Hidden_Layer_1 = 30
-Hidden_Layer_2 = 30
-'''
 
-'''
-# Layers (FYI)
-# BRANCH 2
-Input_Layer = 1
-'''
 
-'''
-# Layers (FYI)
-# MERGED
-Merged Layer
-Output Layer = 1
-'''
 
-# Define neural network
-branch1 = Sequential()
-branch1.add(Dense(30,
-        input_shape=(6,),
-        activation='tanh',
-        kernel_initializer='glorot_normal',
-        kernel_regularizer=regularizers.l2(0.00005),
-        use_bias=True, bias_initializer='glorot_normal'))
-branch1.add(Dense(30,
-        activation='tanh',
-        kernel_initializer='glorot_normal',
-        kernel_regularizer=regularizers.l2(0.00005),
-        use_bias=True, bias_initializer='glorot_normal'))
 
-branch2 = Sequential()
-branch2.add(Dense(1,
-        input_shape=(1,),
-        activation='tanh',
-        kernel_initializer='glorot_normal',
-        kernel_regularizer=regularizers.l2(0.00005),
-        use_bias=True, bias_initializer='glorot_normal'))
+print(x_test_1.shape)
 
-model = Sequential()
-model.add(Merge([branch1, branch2], mode = 'concat'))
-model.add(Dense(1,
-        activation= activation='tanh', #       'LateFusionActivation',
-        kernel_initializer='glorot_normal',
-        kernel_regularizer=regularizers.l2(0.00005),
-        use_bias=True, bias_initializer='glorot_normal'))
-model.add(Dense(1,
-        activation='linear'))
-model.summary()
+
+
+# branch1
+visible_branch1 = Input(shape=(6,))
+hidden1_branch1 = Dense(30)(visible_branch1)
+hidden2_branch1 = Dense(30)(hidden1_branch1)
+
+# branch2
+visible_branch2 = Input(shape=(1,))
+
+# merge input models
+merge = concatenate([hidden2_branch1, visible_branch2])
+
+# interpretation model
+output = Dense(1, activation='sigmoid')(merge)
+
+model = Model(inputs=[visible_branch1, visible_branch2], outputs=output)
+
+# summarize layers
+print(model.summary())
+
+# plot graph
+# plot_model(model, 'ModelPlots/' + str(file_name) + 'model_plot.png')
+
+
 
 
 model.compile(loss='mean_squared_error',   #categorical_crossentropy
@@ -245,6 +234,7 @@ history = model.fit([x_train_1, x_train_2],
                     shuffle=True,
                     verbose=2,
                     validation_data=(x_test, y_test),
+                    # validation_data=([x_test_branch1, x_test_branch2], y_test),
                     callbacks=[tbCallBack, EarlyStoppingCallBack])
 
 score = model.evaluate(x_test, y_test, verbose=0)

@@ -1,0 +1,4 @@
+Test loss: 0.09091827347859492
+val_mean_absolute_error: 0.19410575631953897
+val_mean_squared_error: 0.08287492910736796
+RMSE: 0.280474561372315
