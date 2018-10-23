@@ -27,6 +27,7 @@ $RECYCLE.BIN/
 unstable_training_gen2_7D_nions0_flat_filter7.h5
 unstable_training_gen3_7D_nions0_flat_filter8.h5
 gen3_7D_nions0_flat_filter8.h5
+training_gen3_7D_nions0_flat_filter8.h5
 /Plotting/out_local.csv
 /Plotting/out_joined_dataFrame.csv
 /Plotting/out_smag.csv
