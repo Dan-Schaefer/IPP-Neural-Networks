@@ -1,0 +1,4 @@
+Test loss: nan
+val_mean_absolute_error: nan
+val_mean_squared_error: nan
+RMSE: nan
