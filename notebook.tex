@@ -1,0 +1,1054 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{2018-11-21\_Run0160}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{run-objective}{%
+\section{Run Objective:}\label{run-objective}}
+
+    \hypertarget{run0160}{%
+\subsubsection{Run0160}\label{run0160}}
+
+\begin{itemize}
+\tightlist
+\item
+  I had a super useful Skype meeting with Jonathan today. We discussed
+  some key issues and the meeting was summarised very nicely by Jonathan
+  on Slack afterwards:
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{itemize}
+\tightlist
+\item
+  Based on \texttt{Run0157} architecture.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    Following changes have been made:
+
+\begin{itemize}
+\tightlist
+\item
+  The term \texttt{pooling} has been replaced with \texttt{operator} to
+  avoid potential confusion by readers:
+\end{itemize}
+
+\begin{quote}
+\texttt{addition\_pooling} to \texttt{addition\_operator}
+\end{quote}
+
+\begin{quote}
+\texttt{power\_pooling} to \texttt{power\_operator}
+\end{quote}
+
+\begin{quote}
+\texttt{multiplication\_pooling\_1} to
+\texttt{multiplication\_operator\_1}
+\end{quote}
+
+\begin{quote}
+\texttt{multiplication\_pooling\_2} to
+\texttt{multiplication\_operator\_2}
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  The final \texttt{theta}, \texttt{c\_3}, and \texttt{m} neurons had
+  nonlinear (\texttt{tanh}) activation instead of \texttt{linear}!
+  Changed to \texttt{linear} \& eliminated all feeder layers apart from
+  \texttt{theta\_branch1\_feeder} (weight = -1):
+\end{itemize}
+
+\begin{quote}
+\texttt{theta\_branch1\ =\ Dense(1,\ activation=\textquotesingle{}tanh\textquotesingle{},\ kernel\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ kernel\_regularizer=regularizers.l2(L2\_regularization),\ use\_bias=True,\ bias\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ name="theta\_branch1")(hidden2\_branch1)\ theta\_branch1\_feeder\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ kernel\_initializer=Constant(value=-1),\ bias\_initializer=\textquotesingle{}Zeros\textquotesingle{},\ trainable=False,\ name="theta\_branch1\_feeder")(theta\_branch1)}
+to
+\texttt{theta\_branch1\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ kernel\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ kernel\_regularizer=regularizers.l2(L2\_regularization),\ use\_bias=True,\ bias\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ trainable=True,\ name="theta\_branch1")(hidden2\_branch1)\ theta\_branch1\_feeder\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ kernel\_initializer=Constant(value=-1),\ bias\_initializer=\textquotesingle{}Zeros\textquotesingle{},\ trainable=False,\ name="theta\_branch1\_feeder")(theta\_branch1)}
+\end{quote}
+
+\begin{quote}
+\texttt{\#\ branch2\ (Ate\ input)\ visible\_branch2\ =\ Input(shape=(1,\ ),\ name="Ate\_INPUT")\ visible\_branch2\_feeder\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ name="visible\_branch2\_feeder")(visible\_branch2)}
+to
+\texttt{\#\ branch2\ (Ate\ input)\ visible\_branch2\ =\ Input(shape=(1,\ ),\ name="Ate\_INPUT")}
+\end{quote}
+
+\begin{quote}
+\texttt{c\_3\_branch3\ =\ Dense(1,\ activation=\textquotesingle{}tanh\textquotesingle{},\ kernel\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ kernel\_regularizer=regularizers.l2(L2\_regularization),\ use\_bias=True,\ bias\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ name="c\_3\_branch3")(hidden2\_branch3)\ c\_3\_branch3\_feeder\ =\ Dense(1,\ kernel\_initializer=Constant(value=+1),\ bias\_initializer=\textquotesingle{}Zeros\textquotesingle{},\ trainable=False,\ name="c\_3\_branch3\_feeder")(c\_3\_branch3)}
+to
+\texttt{c\_3\_branch3\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ kernel\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ kernel\_regularizer=regularizers.l2(L2\_regularization),\ use\_bias=True,\ bias\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ trainable=True,\ name="c\_3\_branch3")(hidden2\_branch3)}
+\end{quote}
+
+\begin{quote}
+\texttt{m\_branch4\ =\ Dense(1,\ activation=\textquotesingle{}tanh\textquotesingle{},\ kernel\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ kernel\_regularizer=regularizers.l2(0.00005),\ use\_bias=True,\ bias\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ name="m\_branch4")(hidden2\_branch4)\ m\_branch4\_feeder\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ kernel\_initializer=Constant(value=+1),\ bias\_initializer=\textquotesingle{}Zeros\textquotesingle{},\ trainable=False,\ name="m\_branch4\_feeder")(m\_branch4)}
+to
+\texttt{m\_branch4\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ kernel\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ kernel\_regularizer=regularizers.l2(L2\_regularization),\ use\_bias=True,\ bias\_initializer=\textquotesingle{}glorot\_normal\textquotesingle{},\ trainable=True,\ name="m\_branch4")(hidden2\_branch4)}
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Added L2 regularization to \texttt{output} layer:
+\end{itemize}
+
+\begin{quote}
+\texttt{\#\ Output\_Layer\ output\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ kernel\_initializer=\textquotesingle{}Ones\textquotesingle{},\ kernel\_regularizer=regularizers.l2(L2\_regularization),\ bias\_initializer=\textquotesingle{}Zeros\textquotesingle{},\ trainable=True,\ name="Output\_Layer")(multiplication\_operator\_2)}
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Consolidated L2 regularizations:
+\end{itemize}
+
+\begin{quote}
+\texttt{\#\ Define\ neural\ network\ parameters\ batch\_size\ =\ 10\ epochs\ =\ 100\ L2\_regularization\ =\ 0.00005}
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Changed the Lambda Layer clipping range:
+\end{itemize}
+
+\begin{quote}
+\texttt{\#\ Power\_Operator\ \ \ \ power\_layer\ =\ Lambda(lambda\ x:\ (K.clip(K.abs(x{[}0{]}),\ 0.00001,\ 1000))\ **\ (K.clip(K.abs(x{[}1{]}),\ -1.,\ 3.)))}
+to
+\texttt{\#\ Power\_Operator\ \ \ \ power\_layer\ =\ Lambda(lambda\ x:\ (K.clip(K.abs(x{[}0{]}),\ 0.00001,\ 1000))\ **\ (K.clip(x{[}1{]},\ -2.,\ 4.)))}
+\end{quote}
+
+    The following has been explicitly kept/reinstated:
+
+\begin{itemize}
+\tightlist
+\item
+  final output layer has weight=1, bias=0, trainable=0
+\end{itemize}
+
+\begin{quote}
+\texttt{\#\ Output\_Layer\ output\ =\ Dense(1,\ activation=\textquotesingle{}linear\textquotesingle{},\ kernel\_initializer=\textquotesingle{}Ones\textquotesingle{},\ kernel\_regularizer=regularizers.l2(L2\_regularization),\ bias\_initializer=\textquotesingle{}Zeros\textquotesingle{},\ trainable=True,\ name="Output\_Layer")(multiplication\_operator\_2)}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} DO NOT RUN THIS PART}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        
+        \PY{c+c1}{\PYZsh{} Gets the current file name. Useful for procedurally generating output/log files.}
+        \PY{n}{file\PYZus{}name} \PY{o}{=}  \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{basename}\PY{p}{(}\PY{n}{sys}\PY{o}{.}\PY{n}{argv}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{)}
+        
+        \PY{k}{if} \PY{n}{file\PYZus{}name} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ipykernel\PYZus{}launcher}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{This is the Jupyter version.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Now MANUALLY run the next two cells!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{STOP! This should not be in your code!!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n}{exit}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+            \PY{n}{time}\PY{o}{.}\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Testing if script has really stopped.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{This is the Atom version}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} RUN ONLY IN JUPYTER!!}
+        \PY{c+c1}{\PYZsh{} Start here (manual)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{o}{\PYZpc{}}\PY{n+nx}{javascript}
+        \PY{n+nx}{IPython}\PY{p}{.}\PY{n+nx}{notebook}\PY{p}{.}\PY{n+nx}{kernel}\PY{p}{.}\PY{n+nx}{execute}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}file\PYZus{}name = \PYZdq{}\PYZsq{}} \PY{o}{+} \PY{n+nx}{IPython}\PY{p}{.}\PY{n+nx}{notebook}\PY{p}{.}\PY{n+nx}{notebook\PYZus{}name} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}\PYZdq{}\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2018-11-21\_Run0160.ipynb
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{n}{file\PYZus{}name}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{6}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{)}
+        
+        \PY{n}{is\PYZus{}Jupyter} \PY{o}{=} \PY{k+kc}{True}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{is\PYZus{}Jupyter}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2018-11-21\_Run0160
+True
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Same code for both ATOM \PYZam{} JUPYTER from now (Run all cells below now)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{Late Fusion Module (test) \PYZhy{} Functional API}
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        
+        \PY{c+c1}{\PYZsh{} Multiple Inputs}
+        \PY{k+kn}{import} \PY{n+nn}{keras}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{optimizers} \PY{k}{import} \PY{n}{RMSprop}\PY{p}{,} \PY{n}{adam}\PY{p}{,} \PY{n}{Adam}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{initializers} \PY{k}{import} \PY{n}{TruncatedNormal}\PY{p}{,} \PY{n}{glorot\PYZus{}normal}\PY{p}{,} \PY{n}{Constant}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{utils} \PY{k}{import} \PY{n}{plot\PYZus{}model}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{Model}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers}\PY{n+nn}{.}\PY{n+nn}{core} \PY{k}{import} \PY{n}{Lambda}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{Input}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{Dense}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers} \PY{k}{import} \PY{n}{MaxoutDense}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers}\PY{n+nn}{.}\PY{n+nn}{merge} \PY{k}{import} \PY{n}{concatenate}
+        \PY{k+kn}{from} \PY{n+nn}{keras} \PY{k}{import} \PY{n}{regularizers}
+        \PY{k+kn}{from} \PY{n+nn}{keras} \PY{k}{import} \PY{n}{backend} \PY{k}{as} \PY{n}{K}
+        \PY{c+c1}{\PYZsh{}from keras.backend import switch}
+        \PY{k+kn}{import} \PY{n+nn}{pandas}
+        \PY{k+kn}{import} \PY{n+nn}{numpy}
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy}
+        \PY{k+kn}{import} \PY{n+nn}{tensorflow} \PY{k}{as} \PY{n+nn}{tf}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{utils}\PY{n+nn}{.}\PY{n+nn}{generic\PYZus{}utils} \PY{k}{import} \PY{n}{get\PYZus{}custom\PYZus{}objects}
+        \PY{k+kn}{from} \PY{n+nn}{keras}\PY{n+nn}{.}\PY{n+nn}{layers}\PY{n+nn}{.}\PY{n+nn}{advanced\PYZus{}activations} \PY{k}{import} \PY{n}{ThresholdedReLU}
+        
+        \PY{c+c1}{\PYZsh{}keras.backend.clear\PYZus{}session()}
+        \PY{n}{K}\PY{o}{.}\PY{n}{clear\PYZus{}session}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Using TensorFlow backend.
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Define new Metric: rmse = Root Mean Square Error}
+        \PY{k}{def} \PY{n+nf}{rmse}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{K}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{K}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{K}\PY{o}{.}\PY{n}{square}\PY{p}{(} \PY{n}{y\PYZus{}true}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}pred} \PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Modify for ATOM use}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{if} \PY{n}{is\PYZus{}Jupyter} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+            \PY{k}{pass}
+        \PY{k}{else}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} Gets the current file name. Useful for procedurally generating output/log files.}
+            \PY{n}{file\PYZus{}name} \PY{o}{=}  \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{basename}\PY{p}{(}\PY{n}{sys}\PY{o}{.}\PY{n}{argv}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Define neural network parameters}
+         \PY{n}{batch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{10}
+         \PY{n}{epochs} \PY{o}{=} \PY{l+m+mi}{100}
+         \PY{n}{L2\PYZus{}regularization} \PY{o}{=} \PY{l+m+mf}{0.00005}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Load Data (which is in HDF5 or .h5 format)}
+         \PY{n}{store} \PY{o}{=} \PY{n}{pandas}\PY{o}{.}\PY{n}{HDFStore}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{training\PYZus{}gen3\PYZus{}7D\PYZus{}nions0\PYZus{}flat\PYZus{}filter8.h5}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{target\PYZus{}df} \PY{o}{=} \PY{n}{store}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/output/efeETG\PYZus{}GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}frame}\PY{p}{(}\PY{p}{)}  \PY{c+c1}{\PYZsh{} This one is relatively easy to train}
+         \PY{n}{input\PYZus{}df} \PY{o}{=} \PY{n}{store}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Puts inputs and outputs in the same pandas dataframe.}
+         \PY{c+c1}{\PYZsh{} Also only keeps overlapping entries.}
+         \PY{n}{joined\PYZus{}dataFrame} \PY{o}{=} \PY{n}{target\PYZus{}df}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{input\PYZus{}df}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Make a copy of joined\PYZus{}dataFrame for later use}
+         \PY{n}{joined\PYZus{}dataFrame\PYZus{}original} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{)}
+         
+         
+         \PY{c+c1}{\PYZsh{} *************************************************************************** \PYZsh{}}
+         \PY{c+c1}{\PYZsh{} Normalize data by standard deviation and mean\PYZhy{}centering the data}
+         \PY{c+c1}{\PYZsh{} Standard configuration}
+         \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{efeETG\PYZus{}GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{efeETG\PYZus{}GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{efeETG\PYZus{}GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{efeETG\PYZus{}GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ati}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ati}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ati}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ati}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{An}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{An}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{An}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{An}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{smag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{smag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{smag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{smag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ti\PYZus{}Te}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ti\PYZus{}Te}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ti\PYZus{}Te}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ti\PYZus{}Te}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Shuffles dataset}
+         \PY{n}{shuffled\PYZus{}joined\PYZus{}dataFrame} \PY{o}{=} \PY{n}{joined\PYZus{}dataFrame}\PY{o}{.}\PY{n}{reindex}\PY{p}{(}\PY{n}{numpy}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{permutation}\PY{p}{(}
+                                                         \PY{n}{joined\PYZus{}dataFrame}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Creates a pandas dataframe for the outputs}
+         \PY{n}{shuffled\PYZus{}clean\PYZus{}output\PYZus{}df} \PY{o}{=} \PY{n}{shuffled\PYZus{}joined\PYZus{}dataFrame}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{efeETG\PYZus{}GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Make a copy of shuffled\PYZus{}joined\PYZus{}dataFrame for later use}
+         \PY{n}{shuffled\PYZus{}joined\PYZus{}dataFrame\PYZus{}base} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{shuffled\PYZus{}joined\PYZus{}dataFrame}\PY{p}{)}
+         
+         
+         
+         \PY{c+c1}{\PYZsh{} *************************************************************************** \PYZsh{}}
+         \PY{c+c1}{\PYZsh{} Creates a pandas dataframe for the inputs (7D)}
+         \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}7D} \PY{o}{=} \PY{n}{shuffled\PYZus{}joined\PYZus{}dataFrame}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{efeETG\PYZus{}GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Creates training dataset (90\PYZpc{} of total data) for outputs}
+         \PY{n}{y\PYZus{}train} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}output\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{n+nb}{int}\PY{p}{(}
+             \PY{n}{numpy}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}output\PYZus{}df}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Creates training dataset (90\PYZpc{} of total data) for inputs}
+         \PY{n}{x\PYZus{}train} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}7D}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{n+nb}{int}\PY{p}{(}
+             \PY{n}{numpy}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}7D}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Creates testing dataset (10\PYZpc{} of total data) for outputs}
+         \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}output\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}
+             \PY{n}{numpy}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}output\PYZus{}df}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Creates testing dataset (10\PYZpc{} of total data) for inputs}
+         \PY{n}{x\PYZus{}test} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}7D}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}
+             \PY{n}{numpy}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}7D}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{} *************************************************************************** \PYZsh{}}
+         
+         
+         \PY{c+c1}{\PYZsh{} Deletes pandas dataframes that are no longer needed}
+         \PY{k}{del} \PY{n}{target\PYZus{}df}\PY{p}{,} \PY{n}{input\PYZus{}df}
+         
+         \PY{c+c1}{\PYZsh{} Closes the HDFStore. This is good practice.}
+         \PY{n}{store}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}7D}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{include}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:}                 Ati           Ate            An             q          smag  \textbackslash{}
+         count  6.479137e+06  6.479137e+06  6.479137e+06  6.479137e+06  6.479137e+06   
+         mean  -1.408575e-16  2.629073e-16  2.266714e-16  8.698289e-17 -1.744845e-17   
+         std    1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00   
+         min   -1.632300e+00 -1.639065e+00 -1.901001e+00 -8.370116e-01 -1.574307e+00   
+         25\%   -7.928000e-01 -7.898708e-01 -5.438138e-01 -6.367600e-01 -8.011463e-01   
+         50\%   -1.059360e-01 -9.507533e-02  1.347799e-01 -3.983652e-01 -1.936629e-01   
+         75\%    5.809279e-01  5.997202e-01  6.437252e-01  1.976217e-01  9.108525e-01   
+         max    2.641520e+00  2.684107e+00  1.831264e+00  2.581570e+00  1.739239e+00   
+         
+                           x         Ti\_Te  
+         count  6.479137e+06  6.479137e+06  
+         mean  -6.437410e-19  5.180086e-17  
+         std    1.000000e+00  1.000000e+00  
+         min   -1.405340e+00 -1.235044e+00  
+         25\%   -9.907529e-01 -8.817246e-01  
+         50\%   -1.615792e-01 -1.750863e-01  
+         75\%    6.675945e-01  7.576761e-01  
+         max    1.704062e+00  1.944828e+00  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Creates a pandas dataframe for the inputs}
+         \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}1} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}7D}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}1}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{include}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:}                 Ati            An             q          smag             x  \textbackslash{}
+         count  6.479137e+06  6.479137e+06  6.479137e+06  6.479137e+06  6.479137e+06   
+         mean  -1.408575e-16  2.266714e-16  8.698289e-17 -1.744845e-17 -6.437410e-19   
+         std    1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00   
+         min   -1.632300e+00 -1.901001e+00 -8.370116e-01 -1.574307e+00 -1.405340e+00   
+         25\%   -7.928000e-01 -5.438138e-01 -6.367600e-01 -8.011463e-01 -9.907529e-01   
+         50\%   -1.059360e-01  1.347799e-01 -3.983652e-01 -1.936629e-01 -1.615792e-01   
+         75\%    5.809279e-01  6.437252e-01  1.976217e-01  9.108525e-01  6.675945e-01   
+         max    2.641520e+00  1.831264e+00  2.581570e+00  1.739239e+00  1.704062e+00   
+         
+                       Ti\_Te  
+         count  6.479137e+06  
+         mean   5.180086e-17  
+         std    1.000000e+00  
+         min   -1.235044e+00  
+         25\%   -8.817246e-01  
+         50\%   -1.750863e-01  
+         75\%    7.576761e-01  
+         max    1.944828e+00  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}1}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(6479137, 6)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}7D}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ati}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{An}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{smag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ti\PYZus{}Te}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{include}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:}                 Ate
+         count  6.479137e+06
+         mean   2.629073e-16
+         std    1.000000e+00
+         min   -1.639065e+00
+         25\%   -7.898708e-01
+         50\%   -9.507533e-02
+         75\%    5.997202e-01
+         max    2.684107e+00
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(6479137, 1)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} *************************************************************************** \PYZsh{}}
+         \PY{c+c1}{\PYZsh{} Branch 1}
+         
+         \PY{c+c1}{\PYZsh{} Creates training dataset (90\PYZpc{} of total data) for inputs}
+         \PY{n}{x\PYZus{}train\PYZus{}1} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}1}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{n+nb}{int}\PY{p}{(}
+             \PY{n}{numpy}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}1}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Creates testing dataset (10\PYZpc{} of total data) for inputs}
+         \PY{n}{x\PYZus{}test\PYZus{}1} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}1}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}
+             \PY{n}{numpy}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}1}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{} *************************************************************************** \PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} *************************************************************************** \PYZsh{}}
+         \PY{c+c1}{\PYZsh{} Branch 2}
+         
+         \PY{c+c1}{\PYZsh{} Creates training dataset (90\PYZpc{} of total data) for inputs}
+         \PY{n}{x\PYZus{}train\PYZus{}2} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{n+nb}{int}\PY{p}{(}
+             \PY{n}{numpy}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Creates testing dataset (10\PYZpc{} of total data) for inputs}
+         \PY{n}{x\PYZus{}test\PYZus{}2} \PY{o}{=} \PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}
+             \PY{n}{numpy}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shuffled\PYZus{}clean\PYZus{}input\PYZus{}df\PYZus{}2}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{} *************************************************************************** \PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} branch1}
+         \PY{n}{visible\PYZus{}branch1} \PY{o}{=} \PY{n}{Input}\PY{p}{(}\PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,} \PY{p}{)}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{6D\PYZus{}INPUTS}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{hidden1\PYZus{}branch1} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tanh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hidden1\PYZus{}branch1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{visible\PYZus{}branch1}\PY{p}{)}
+         \PY{n}{hidden2\PYZus{}branch1} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tanh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hidden2\PYZus{}branch1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{hidden1\PYZus{}branch1}\PY{p}{)}
+         \PY{n}{theta\PYZus{}branch1} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tanh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta\PYZus{}branch1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{hidden2\PYZus{}branch1}\PY{p}{)}
+         \PY{n}{theta\PYZus{}branch1\PYZus{}feeder} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{n}{Constant}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeros}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{trainable}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta\PYZus{}branch1\PYZus{}feeder}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{theta\PYZus{}branch1}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} branch2 (Ate input)}
+         \PY{n}{visible\PYZus{}branch2} \PY{o}{=} \PY{n}{Input}\PY{p}{(}\PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{)}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ate\PYZus{}INPUT}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Addition\PYZus{}Operator (effectively subtraction though...)}
+         \PY{n}{addition\PYZus{}operator} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Add}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Addition\PYZus{}Operator}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{p}{[}\PY{n}{theta\PYZus{}branch1\PYZus{}feeder}\PY{p}{,} \PY{n}{visible\PYZus{}branch2}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} ReLU Layer}
+         \PY{n}{TR} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ones}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeros}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{n}{trainable}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+                    \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{TR}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{addition\PYZus{}operator}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} branch 3 (for c\PYZus{}3)}
+         \PY{n}{hidden1\PYZus{}branch3} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tanh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hidden1\PYZus{}branch3}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{visible\PYZus{}branch1}\PY{p}{)}
+         \PY{n}{hidden2\PYZus{}branch3} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tanh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hidden2\PYZus{}branch3}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{hidden1\PYZus{}branch3}\PY{p}{)}
+         \PY{n}{c\PYZus{}3\PYZus{}branch3} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{trainable}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{c\PYZus{}3\PYZus{}branch3}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{hidden2\PYZus{}branch3}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Power\PYZus{}Operator    }
+         \PY{n}{power\PYZus{}layer} \PY{o}{=} \PY{n}{Lambda}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{(}\PY{n}{K}\PY{o}{.}\PY{n}{clip}\PY{p}{(}\PY{n}{K}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{l+m+mf}{0.00001}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{p}{(}\PY{n}{K}\PY{o}{.}\PY{n}{clip}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{2.}\PY{p}{,} \PY{l+m+mf}{4.}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Power\PYZus{}Operator}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{power\PYZus{}operator} \PY{o}{=} \PY{n}{power\PYZus{}layer}\PY{p}{(}\PY{p}{[}\PY{n}{addition\PYZus{}operator}\PY{p}{,} \PY{n}{c\PYZus{}3\PYZus{}branch3}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} branch 4 (for the gradient)}
+         \PY{n}{hidden1\PYZus{}branch4} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tanh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hidden1\PYZus{}branch4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{visible\PYZus{}branch1}\PY{p}{)}
+         \PY{n}{hidden2\PYZus{}branch4} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tanh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hidden2\PYZus{}branch4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{hidden1\PYZus{}branch4}\PY{p}{)}
+         \PY{n}{m\PYZus{}branch4} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}
+                 \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{use\PYZus{}bias}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{glorot\PYZus{}normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{trainable}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                 \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{m\PYZus{}branch4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{hidden2\PYZus{}branch4}\PY{p}{)}   
+         
+         \PY{c+c1}{\PYZsh{} Multiplication\PYZus{}Operator\PYZus{}1}
+         \PY{n}{multiplication\PYZus{}operator\PYZus{}1} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Multiply}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Multiplication\PYZus{}Operator\PYZus{}1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{p}{[}\PY{n}{TR}\PY{p}{,} \PY{n}{power\PYZus{}operator}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Multiplication\PYZus{}Operator\PYZus{}2}
+         \PY{n}{multiplication\PYZus{}operator\PYZus{}2} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{Multiply}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Multiplication\PYZus{}Operator\PYZus{}2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{p}{[}\PY{n}{m\PYZus{}branch4}\PY{p}{,} \PY{n}{multiplication\PYZus{}operator\PYZus{}1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Output\PYZus{}Layer}
+         \PY{n}{output} \PY{o}{=} \PY{n}{Dense}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{activation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{n}{kernel\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ones}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{n}{kernel\PYZus{}regularizer}\PY{o}{=}\PY{n}{regularizers}\PY{o}{.}\PY{n}{l2}\PY{p}{(}\PY{n}{L2\PYZus{}regularization}\PY{p}{)}\PY{p}{,}
+                    \PY{n}{bias\PYZus{}initializer}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeros}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{n}{trainable}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                    \PY{n}{name}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Output\PYZus{}Layer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{(}\PY{n}{multiplication\PYZus{}operator\PYZus{}2}\PY{p}{)}
+         
+         \PY{n}{model} \PY{o}{=} \PY{n}{Model}\PY{p}{(}\PY{n}{inputs}\PY{o}{=}\PY{p}{[}\PY{n}{visible\PYZus{}branch1}\PY{p}{,} \PY{n}{visible\PYZus{}branch2}\PY{p}{]}\PY{p}{,} \PY{n}{outputs}\PY{o}{=}\PY{n}{output}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} summarize layers}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Layer (type)                    Output Shape         Param \#     Connected to                     
+==================================================================================================
+6D\_INPUTS (InputLayer)          (None, 6)            0                                            
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+hidden1\_branch1 (Dense)         (None, 30)           210         6D\_INPUTS[0][0]                  
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+hidden2\_branch1 (Dense)         (None, 30)           930         hidden1\_branch1[0][0]            
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+theta\_branch1 (Dense)           (None, 1)            31          hidden2\_branch1[0][0]            
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+hidden1\_branch3 (Dense)         (None, 30)           210         6D\_INPUTS[0][0]                  
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+theta\_branch1\_feeder (Dense)    (None, 1)            2           theta\_branch1[0][0]              
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Ate\_INPUT (InputLayer)          (None, 1)            0                                            
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+hidden2\_branch3 (Dense)         (None, 30)           930         hidden1\_branch3[0][0]            
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+hidden1\_branch4 (Dense)         (None, 30)           210         6D\_INPUTS[0][0]                  
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Addition\_Operator (Add)         (None, 1)            0           theta\_branch1\_feeder[0][0]       
+                                                                 Ate\_INPUT[0][0]                  
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+c\_3\_branch3 (Dense)             (None, 1)            31          hidden2\_branch3[0][0]            
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+hidden2\_branch4 (Dense)         (None, 30)           930         hidden1\_branch4[0][0]            
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+TR (Dense)                      (None, 1)            2           Addition\_Operator[0][0]          
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Power\_Operator (Lambda)         (None, 1)            0           Addition\_Operator[0][0]          
+                                                                 c\_3\_branch3[0][0]                
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+m\_branch4 (Dense)               (None, 1)            31          hidden2\_branch4[0][0]            
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Multiplication\_Operator\_1 (Mult (None, 1)            0           TR[0][0]                         
+                                                                 Power\_Operator[0][0]             
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Multiplication\_Operator\_2 (Mult (None, 1)            0           m\_branch4[0][0]                  
+                                                                 Multiplication\_Operator\_1[0][0]  
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Output\_Layer (Dense)            (None, 1)            2           Multiplication\_Operator\_2[0][0]  
+==================================================================================================
+Total params: 3,519
+Trainable params: 3,515
+Non-trainable params: 4
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+None
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} plot graph}
+        \PY{n}{plot\PYZus{}model}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ModelPlots/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}model\PYZus{}plot.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{model}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}squared\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}   \PY{c+c1}{\PYZsh{}categorical\PYZus{}crossentropy}
+                       \PY{n}{optimizer}\PY{o}{=}\PY{n}{Adam}\PY{p}{(}\PY{n}{lr}\PY{o}{=}\PY{l+m+mf}{0.001}\PY{p}{,} \PY{n}{beta\PYZus{}1}\PY{o}{=}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{n}{beta\PYZus{}2}\PY{o}{=}\PY{l+m+mf}{0.999}\PY{p}{)}\PY{p}{,}
+                       \PY{n}{metrics}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mae}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mean\PYZus{}squared\PYZus{}error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{rmse}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Add CallBacks (including TensorBoard)}
+         \PY{n}{tbCallBack} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{TensorBoard}\PY{p}{(}
+                 \PY{n}{log\PYZus{}dir}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TensorBoard\PYZus{}logs/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{)}\PY{p}{,} \PY{n}{write\PYZus{}graph} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{write\PYZus{}images}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{write\PYZus{}grads}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{EarlyStoppingCallBack} \PY{o}{=} \PY{n}{keras}\PY{o}{.}\PY{n}{callbacks}\PY{o}{.}\PY{n}{EarlyStopping}\PY{p}{(}
+                 \PY{n}{monitor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}rmse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{min\PYZus{}delta}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{patience}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{history} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{[}\PY{n}{x\PYZus{}train\PYZus{}1}\PY{p}{,} \PY{n}{x\PYZus{}train\PYZus{}2}\PY{p}{]}\PY{p}{,}
+                             \PY{n}{y} \PY{o}{=} \PY{n}{y\PYZus{}train}\PY{p}{,}
+                             \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{batch\PYZus{}size}\PY{p}{,}
+                             \PY{n}{epochs}\PY{o}{=}\PY{n}{epochs}\PY{p}{,}
+                             \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                             \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}
+                             \PY{c+c1}{\PYZsh{} validation\PYZus{}data=(x\PYZus{}test, y\PYZus{}test),}
+                             \PY{n}{validation\PYZus{}data}\PY{o}{=}\PY{p}{(}\PY{p}{[}\PY{n}{x\PYZus{}test\PYZus{}1}\PY{p}{,} \PY{n}{x\PYZus{}test\PYZus{}2}\PY{p}{]}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}\PY{p}{,}
+                             \PY{c+c1}{\PYZsh{}callbacks=[tbCallBack, EarlyStoppingCallBack, NBatchLogger(5e4)])}
+                             \PY{n}{callbacks}\PY{o}{=}\PY{p}{[}\PY{n}{tbCallBack}\PY{p}{,} \PY{n}{EarlyStoppingCallBack}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}5e4}
+         
+         \PY{c+c1}{\PYZsh{} score = model.evaluate(x\PYZus{}test, y\PYZus{}test, verbose=0)}
+         \PY{n}{score} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{evaluate}\PY{p}{(}\PY{p}{[}\PY{n}{x\PYZus{}test\PYZus{}1}\PY{p}{,} \PY{n}{x\PYZus{}test\PYZus{}2}\PY{p}{]}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test loss:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{score}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{val\PYZus{}mean\PYZus{}absolute\PYZus{}error:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{score}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{score}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model.metrics\PYZus{}names}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{metrics\PYZus{}names}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} creates a HDF5 file \PYZsq{}my\PYZus{}model.h5\PYZsq{}}
+         \PY{n}{model}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./Saved\PYZhy{}Networks/}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{)} \PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.h5}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Create output file}
+         \PY{n}{OutputFile} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./Loss\PYZhy{}Values/}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{p}{)} \PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w+}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{OutputFile}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Test loss: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{score}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{OutputFile}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{val\PYZus{}mean\PYZus{}absolute\PYZus{}error: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{score}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{OutputFile}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{val\PYZus{}mean\PYZus{}squared\PYZus{}error: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{score}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{OutputFile}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RMSE: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{score}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{OutputFile}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+         
+         \PY{k}{del} \PY{n}{history}
+         \PY{k}{del} \PY{n}{model}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Train on 5831223 samples, validate on 647914 samples
+Epoch 1/100
+ - 427s - loss: 0.1205 - mean\_absolute\_error: 0.0930 - mean\_squared\_error: 0.1060 - rmse: 0.2184 - val\_loss: 0.1028 - val\_mean\_absolute\_error: 0.0820 - val\_mean\_squared\_error: 0.0867 - val\_rmse: 0.2004
+Epoch 2/100
+ - 424s - loss: 0.0990 - mean\_absolute\_error: 0.0803 - mean\_squared\_error: 0.0825 - rmse: 0.1916 - val\_loss: 0.0895 - val\_mean\_absolute\_error: 0.0758 - val\_mean\_squared\_error: 0.0731 - val\_rmse: 0.1766
+Epoch 3/100
+ - 425s - loss: 0.0953 - mean\_absolute\_error: 0.0776 - mean\_squared\_error: 0.0788 - rmse: 0.1866 - val\_loss: 0.0866 - val\_mean\_absolute\_error: 0.0697 - val\_mean\_squared\_error: 0.0700 - val\_rmse: 0.1735
+Epoch 4/100
+ - 426s - loss: 0.0928 - mean\_absolute\_error: 0.0758 - mean\_squared\_error: 0.0764 - rmse: 0.1831 - val\_loss: 0.0867 - val\_mean\_absolute\_error: 0.0703 - val\_mean\_squared\_error: 0.0704 - val\_rmse: 0.1722
+Epoch 5/100
+ - 419s - loss: 0.0912 - mean\_absolute\_error: 0.0749 - mean\_squared\_error: 0.0748 - rmse: 0.1812 - val\_loss: 0.0858 - val\_mean\_absolute\_error: 0.0723 - val\_mean\_squared\_error: 0.0694 - val\_rmse: 0.1757
+Epoch 6/100
+ - 418s - loss: 0.0906 - mean\_absolute\_error: 0.0744 - mean\_squared\_error: 0.0742 - rmse: 0.1803 - val\_loss: 0.0904 - val\_mean\_absolute\_error: 0.0703 - val\_mean\_squared\_error: 0.0739 - val\_rmse: 0.1775
+Epoch 7/100
+ - 417s - loss: 0.0899 - mean\_absolute\_error: 0.0740 - mean\_squared\_error: 0.0735 - rmse: 0.1792 - val\_loss: 0.0922 - val\_mean\_absolute\_error: 0.0720 - val\_mean\_squared\_error: 0.0758 - val\_rmse: 0.1796
+Epoch 8/100
+ - 418s - loss: 0.0896 - mean\_absolute\_error: 0.0737 - mean\_squared\_error: 0.0732 - rmse: 0.1788 - val\_loss: 0.0836 - val\_mean\_absolute\_error: 0.0694 - val\_mean\_squared\_error: 0.0672 - val\_rmse: 0.1696
+Epoch 9/100
+ - 416s - loss: 0.0894 - mean\_absolute\_error: 0.0736 - mean\_squared\_error: 0.0730 - rmse: 0.1785 - val\_loss: 0.0900 - val\_mean\_absolute\_error: 0.0691 - val\_mean\_squared\_error: 0.0736 - val\_rmse: 0.1742
+Epoch 10/100
+ - 415s - loss: 0.0895 - mean\_absolute\_error: 0.0735 - mean\_squared\_error: 0.0730 - rmse: 0.1786 - val\_loss: 0.0824 - val\_mean\_absolute\_error: 0.0657 - val\_mean\_squared\_error: 0.0659 - val\_rmse: 0.1648
+Epoch 11/100
+ - 415s - loss: 0.0891 - mean\_absolute\_error: 0.0734 - mean\_squared\_error: 0.0726 - rmse: 0.1782 - val\_loss: 0.0983 - val\_mean\_absolute\_error: 0.0760 - val\_mean\_squared\_error: 0.0820 - val\_rmse: 0.1875
+Epoch 12/100
+ - 416s - loss: 0.0891 - mean\_absolute\_error: 0.0733 - mean\_squared\_error: 0.0727 - rmse: 0.1781 - val\_loss: 0.0799 - val\_mean\_absolute\_error: 0.0676 - val\_mean\_squared\_error: 0.0635 - val\_rmse: 0.1671
+Epoch 13/100
+ - 416s - loss: 0.0888 - mean\_absolute\_error: 0.0732 - mean\_squared\_error: 0.0724 - rmse: 0.1776 - val\_loss: 0.0842 - val\_mean\_absolute\_error: 0.0708 - val\_mean\_squared\_error: 0.0677 - val\_rmse: 0.1672
+Epoch 14/100
+ - 415s - loss: 0.0887 - mean\_absolute\_error: 0.0730 - mean\_squared\_error: 0.0722 - rmse: 0.1774 - val\_loss: 0.0854 - val\_mean\_absolute\_error: 0.0709 - val\_mean\_squared\_error: 0.0690 - val\_rmse: 0.1762
+Epoch 15/100
+ - 415s - loss: 0.0886 - mean\_absolute\_error: 0.0730 - mean\_squared\_error: 0.0722 - rmse: 0.1772 - val\_loss: 0.0838 - val\_mean\_absolute\_error: 0.0681 - val\_mean\_squared\_error: 0.0674 - val\_rmse: 0.1680
+Epoch 16/100
+ - 414s - loss: 0.0884 - mean\_absolute\_error: 0.0729 - mean\_squared\_error: 0.0719 - rmse: 0.1771 - val\_loss: 0.0951 - val\_mean\_absolute\_error: 0.0740 - val\_mean\_squared\_error: 0.0787 - val\_rmse: 0.1809
+Epoch 17/100
+ - 416s - loss: 0.0883 - mean\_absolute\_error: 0.0729 - mean\_squared\_error: 0.0720 - rmse: 0.1770 - val\_loss: 0.0855 - val\_mean\_absolute\_error: 0.0720 - val\_mean\_squared\_error: 0.0692 - val\_rmse: 0.1744
+Epoch 18/100
+ - 416s - loss: 0.0883 - mean\_absolute\_error: 0.0727 - mean\_squared\_error: 0.0721 - rmse: 0.1768 - val\_loss: 0.0911 - val\_mean\_absolute\_error: 0.0732 - val\_mean\_squared\_error: 0.0750 - val\_rmse: 0.1821
+Epoch 19/100
+ - 415s - loss: 0.0880 - mean\_absolute\_error: 0.0726 - mean\_squared\_error: 0.0719 - rmse: 0.1767 - val\_loss: 0.0923 - val\_mean\_absolute\_error: 0.0758 - val\_mean\_squared\_error: 0.0764 - val\_rmse: 0.1826
+Epoch 20/100
+ - 416s - loss: 0.0879 - mean\_absolute\_error: 0.0724 - mean\_squared\_error: 0.0719 - rmse: 0.1762 - val\_loss: 0.0858 - val\_mean\_absolute\_error: 0.0732 - val\_mean\_squared\_error: 0.0698 - val\_rmse: 0.1736
+Epoch 21/100
+ - 415s - loss: 0.0879 - mean\_absolute\_error: 0.0724 - mean\_squared\_error: 0.0719 - rmse: 0.1762 - val\_loss: 0.0813 - val\_mean\_absolute\_error: 0.0672 - val\_mean\_squared\_error: 0.0653 - val\_rmse: 0.1694
+Epoch 22/100
+ - 415s - loss: 0.0878 - mean\_absolute\_error: 0.0723 - mean\_squared\_error: 0.0718 - rmse: 0.1760 - val\_loss: 0.0887 - val\_mean\_absolute\_error: 0.0676 - val\_mean\_squared\_error: 0.0726 - val\_rmse: 0.1717
+Epoch 23/100
+ - 413s - loss: 0.0878 - mean\_absolute\_error: 0.0722 - mean\_squared\_error: 0.0717 - rmse: 0.1758 - val\_loss: 0.0844 - val\_mean\_absolute\_error: 0.0711 - val\_mean\_squared\_error: 0.0683 - val\_rmse: 0.1709
+Epoch 24/100
+ - 415s - loss: 0.0876 - mean\_absolute\_error: 0.0722 - mean\_squared\_error: 0.0714 - rmse: 0.1756 - val\_loss: 0.0807 - val\_mean\_absolute\_error: 0.0680 - val\_mean\_squared\_error: 0.0646 - val\_rmse: 0.1663
+Epoch 25/100
+ - 416s - loss: 0.0876 - mean\_absolute\_error: 0.0722 - mean\_squared\_error: 0.0715 - rmse: 0.1758 - val\_loss: 0.0812 - val\_mean\_absolute\_error: 0.0721 - val\_mean\_squared\_error: 0.0652 - val\_rmse: 0.1691
+Test loss: 0.08122851790377938
+val\_mean\_absolute\_error: 0.07212489709187382
+score
+[0.08122851790377938, 0.07212489709187382, 0.06519394926680012, 0.2151788818938446]
+model.metrics\_names
+['loss', 'mean\_absolute\_error', 'mean\_squared\_error', 'rmse']
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
