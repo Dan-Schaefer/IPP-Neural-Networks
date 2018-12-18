@@ -47,7 +47,7 @@ joined_dataFrame = target_df.join(input_df)
 joined_dataFrame_original = deepcopy(joined_dataFrame)
 
 
-# *************************************************************************** #
+#***************************************************************************#
 # Normalize data by standard deviation and mean-centering the data
 # Standard configuration
 joined_dataFrame['efeETG_GB'] = (joined_dataFrame['efeETG_GB'] - joined_dataFrame['efeETG_GB'].mean()) / joined_dataFrame['efeETG_GB'].std()
@@ -71,7 +71,7 @@ shuffled_joined_dataFrame_base = deepcopy(shuffled_joined_dataFrame)
 
 
 
-# *************************************************************************** #
+#***************************************************************************#
 # Creates a pandas dataframe for the inputs (7D)
 shuffled_clean_input_df_7D = shuffled_joined_dataFrame.drop('efeETG_GB', axis=1)
 
@@ -90,7 +90,7 @@ y_test = shuffled_clean_output_df.iloc[int(
 # Creates testing dataset (10% of total data) for inputs
 x_test = shuffled_clean_input_df_7D.iloc[int(
     numpy.round(len(shuffled_clean_input_df_7D)*0.9)):]
-# *************************************************************************** #
+#***************************************************************************#
 
 
 # Deletes pandas dataframes that are no longer needed
@@ -110,7 +110,7 @@ shuffled_clean_input_df_2 = shuffled_clean_input_df_2.drop('x', axis=1)
 shuffled_clean_input_df_2 = shuffled_clean_input_df_2.drop('Ti_Te', axis=1)
 
 
-# *************************************************************************** #
+#***************************************************************************#
 # Branch 1
 
 # Creates training dataset (90% of total data) for inputs
@@ -120,10 +120,10 @@ x_train_1 = shuffled_clean_input_df_1.iloc[:int(
 # Creates testing dataset (10% of total data) for inputs
 x_test_1 = shuffled_clean_input_df_1.iloc[int(
     numpy.round(len(shuffled_clean_input_df_1)*0.9)):]
-# *************************************************************************** #
+#***************************************************************************#
 
 
-# *************************************************************************** #
+#***************************************************************************#
 # Branch 2
 
 # Creates training dataset (90% of total data) for inputs
@@ -133,7 +133,7 @@ x_train_2 = shuffled_clean_input_df_2.iloc[:int(
 # Creates testing dataset (10% of total data) for inputs
 x_test_2 = shuffled_clean_input_df_2.iloc[int(
     numpy.round(len(shuffled_clean_input_df_2)*0.9)):]
-# *************************************************************************** #
+#***************************************************************************#
 
 
 # Define Neural Network Architecture

@@ -1,0 +1,2 @@
+network_label,target_names,thresh_rel_mis_median,thresh_rel_mis_95width,pop_rel_mis_median,pop_rel_mis_95width,thresh_abs_mis_median,thresh_abs_mis_95width,no_thresh_frac,pop_abs_mis_median,pop_abs_mis_95width,no_pop_frac,wobble_unstab,wobble_qlkunstab,wobble_tot
+net_RAPTOR,efeETG_GB,-0.05690615238353802,0.5351346898426551,-0.4371859296482408,0.8500837520938018,-0.3787688442211019,5.206030150753766,0.0325778961994509,-4.075376884422105,8.930197864321604,0.9765849122726689,0.017324963297918924,0.020003298979879406,0.010829758066997664
