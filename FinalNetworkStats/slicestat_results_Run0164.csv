@@ -1,0 +1,2 @@
+network_label,target_names,thresh_rel_mis_median,thresh_rel_mis_95width,pop_rel_mis_median,pop_rel_mis_95width,thresh_abs_mis_median,thresh_abs_mis_95width,no_thresh_frac,pop_abs_mis_median,pop_abs_mis_95width,no_pop_frac,wobble_unstab,wobble_qlkunstab,wobble_tot
+0164,efeETG_GB,0.053997259022385176,0.5365113857576178,,,0.3567839195979925,3.914572864321608,0.02799032824444957,,,1.0,0.009618505806707776,0.019262703261363277,0.010034903776888609
