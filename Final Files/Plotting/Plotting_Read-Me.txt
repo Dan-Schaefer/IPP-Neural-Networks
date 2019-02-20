@@ -1,0 +1,1 @@
+This folder contains resources for evaluating the trained neural networks and to gain some insight into the behaviour of all predictions ("global") vs. single slices.

@@ -1,0 +1,8 @@
+In order to view TensorBoard logs:
+
+(At least on Windows 10)
+
+1.) Launch Anaconda Prompt
+2.) Type:    tensorboard --logdir="C:\tmp\keras_logs"
+3.) Open Browser (Google Chrome works, I can't make guarantees about others)
+4.) Type:    localhost:6006 (or whatever the console prompts you to do)

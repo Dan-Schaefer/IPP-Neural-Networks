@@ -1,0 +1,4 @@
+This file contains the network architecture as well as the values for all weights and biases.
+
+Please see the Jupyter Notebook "2019-02-10_Plotting_Run0164.ipynb" in the folder "Plotting" for an explicit example on how to load such a previously saved network.
+Note that this network file was saved in KERAS and may not work (in fact probably won't) if attempted to be loaded directly in standard Tensorflow.
